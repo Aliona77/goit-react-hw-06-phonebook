@@ -17,7 +17,7 @@ export const Text = styled.p`
 font-size:18px;
 font-weight: 500;
 `
-export const ButtonDelete = styled.bytton`
+export const ButtonDelete = styled.button`
 background-color: #fff;
 cursor: pointer;
   border-radius:5px;
