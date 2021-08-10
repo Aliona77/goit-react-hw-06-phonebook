@@ -1,6 +1,6 @@
 export default {
   ADD: "contacts/add",
   DELETE: "contacts/delete",
-  FILTER_CONTACTS: "contacts/toggleCompleted",
+  FILTER_CONTACTS: "contacts/filterContacts",
   CHANGE_FILTER: "contacts/changeFilter",
 };

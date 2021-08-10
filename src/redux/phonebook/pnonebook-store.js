@@ -6,7 +6,5 @@ const rootReducer = combineReducers({
   contacts: contactsReducer,
 });
 
-//const reducer = (state = {}, action) => state;
-
 const store = createStore(rootReducer, composeWithDevTools());
 export default store;

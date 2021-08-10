@@ -7,7 +7,7 @@ const items = (state = [], { type, payload }) => {
       return [...state, payload];
 
     case types.DELETE:
-      return state.filter(({ contact }) => contact.id !== payload);
+      return state.filter((contact) => contact.id !== payload);
 
     default:
       return state;
