@@ -28,10 +28,10 @@ Filter.propTypes = {
 
 
 const mapStateToPropes = (state) => ({
-    value: state.filter
+    value: state.contacts.filter
 })
 const mapDispatchToProps = dispatch => ({
  onChange:(e)=>dispatch(contactActions.changeFilter(e.target.value)),
 });
 
-export default connect(mapStateToPropes, mapDispatchToProps)(Filter);
+export default connect(mapStateToPropes, mapDispatchToProps)(Filter); 
