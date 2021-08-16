@@ -1,50 +1,48 @@
-
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import contactActions from '../../redux/phonebook/phonebook-actions';
 import { Contact, ContactItem, ButtonDelete, Text } from './ContactList.styles'
+import { useSelector, useDispatch } from 'react-redux';
+//import { connect } from 'react-redux';
+import * as actions from '../../redux/phonebook/phonebook-actions';
+import { onFilteredContacts } from '../../redux/phonebook/pnonebook-selector';
 
 
 
- const ContactList = ({ contacts, onDeleteContact })=> {
+const ContactList = () =>{
+    const contacts = useSelector(onFilteredContacts);
+    const dispatch = useDispatch();
+    const onDeleteContact = (id) => dispatch(actions.deleteContact(id));
+
     return(
         <Contact>
-            {contacts.map(({ id, name, number }) => (
-                <ContactItem key={id}><Text>{name}:{number}</Text>
-            <ButtonDelete onClick={()=>onDeleteContact(id)}>Delete</ButtonDelete>
+            {contacts.map(({id, name, number}) => (
+                <ContactItem
+                    key={id}>
+                    <Text>{name}:{number}
+                    </Text>
+            <ButtonDelete  type ="button" onClick={()=>onDeleteContact(id)}>Delete</ButtonDelete>
             </ContactItem>
         ))}
         </Contact>
     )
 }
-ContactList.propTypes = {
-    contacts: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            number: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-    onDeleteContact: PropTypes.func.isRequired, 
-}
+export default ContactList;
 
+//=========REDUX==================
 
- const onFilteredContacts = (allContacts, filter) => {
-     const normalizedFilter = filter.toLowerCase();
-     
-    return allContacts.filter(({contact}) =>
-      contact.name.toLowerCase().includes(normalizedFilter),
-    );
-};
+//  const onFilteredContacts = (contacts, filter) => {
+//      const normalizedFilter = filter.toLowerCase()
+//     return contacts.filter(({contact}) =>
+//       contact.name.toLowerCase().includes(normalizedFilter),
+//     );
+// };
   
 
-const mapStateToPropes = ({ contacts: { items, filter } }) => ({
-    contacts: onFilteredContacts(items, filter),
-});
+// const mapStateToPropes = ({ contacts: { items, filter } }) => ({
+//     contacts: onFilteredContacts(items, filter),
+// });
 
-const mapDispatchToProps = dispatch => ({
- onDeleteContact:(id)=>dispatch(contactActions.deleteContact(id)),
-});
+// const mapDispatchToProps = dispatch => ({
+//  onDeleteContact:(id)=>dispatch(actions.deleteContact(id)),
+// });
 
 
-export default connect(mapStateToPropes, mapDispatchToProps)(ContactList );
+//export default connect(mapStateToPropes, mapDispatchToProps)(ContactList );

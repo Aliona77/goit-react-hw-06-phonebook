@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+
 import { Title, Containers } from "./Container.styles";
 
 export default function Container ({ title, children }) {
@@ -8,7 +8,4 @@ export default function Container ({ title, children }) {
             {children}
       </Containers>
     )
-};
-Container.propTypes = {
-    title: PropTypes.string,
 };

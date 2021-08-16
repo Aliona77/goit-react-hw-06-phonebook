@@ -12,8 +12,15 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+
 import storage from "redux-persist/lib/storage";
 import contactsReducer from "./phonebook-reducer";
+
+const persistConfig = {
+  key: "contacts",
+  storage,
+  blacklist: ["filter"],
+};
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -24,15 +31,9 @@ const middleware = [
   logger,
 ];
 
-const contactsPersistConfig = {
-  key: "contacts",
-  storage,
-  blacklist: ["filter"],
-};
-
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    contacts: persistReducer(contactsPersistConfig, contactsReducer),
+    contacts: persistReducer(persistConfig, contactsReducer),
   },
   middleware,
   devTools: process.env.NODE_ENV === "development",

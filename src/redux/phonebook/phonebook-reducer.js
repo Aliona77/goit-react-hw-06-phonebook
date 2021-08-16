@@ -1,10 +1,8 @@
 //===========REDUX_TOOLKIT==============
 
-import { createReducer } from "@reduxjs/toolkit";
-import { combineReducers } from "redux";
-import actions from "./phonebook-actions";
+import { createReducer, combineReducers } from "@reduxjs/toolkit";
+import * as actions from "./phonebook-actions";
 
-console.log(actions);
 const items = createReducer([], {
   [actions.addContact]: (state, { payload }) => [...state, payload],
   [actions.deleteContact]: (state, { payload }) =>
